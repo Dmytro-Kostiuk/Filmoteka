@@ -11,10 +11,16 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 1.172;
+  @media screen and (max-width: ($tablet)-1) {
+    flex-direction: column;
+  }
 }
 .heard {
   margin-left: 10px;
   margin-right: 10px;
+  @media screen and (max-width: ($tablet)-1) {
+    margin-top: 10px;
+  }
 }
 
 .link-span {
