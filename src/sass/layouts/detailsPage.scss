@@ -1,0 +1,81 @@
+.modal-buttons {
+  min-width: 130px;
+  min-height: 44px;
+  border-radius: 5px;
+  border-width: 1px;
+  @media screen and (min-width: $tablet) {
+    min-width: 136px;
+  }
+}
+
+.watched-button {
+  margin-right: 15px;
+  background-color: $focus-color;
+  border-color: $focus-color;
+}
+
+.queue-button {
+  background-color: transparent;
+  border-color: $black;
+}
+
+.light {
+  color: $body-bg;
+}
+
+.upper-text {
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.main {
+  padding-top: 20px;
+  padding-bottom: 40px;
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+.info {
+  @media screen and (min-width: $tablet) {
+    margin-left: 30px;
+  }
+}
+
+.film-name {
+  margin-bottom: 20px;
+}
+
+.list-item {
+  color: $footer-text-color;
+  margin-bottom: 10px;
+}
+
+.about {
+  margin-top: 10px;
+  margin-bottom: 40px;
+  @media screen and (min-width: $tablet) {
+    margin-bottom: 20px;
+  }
+}
+
+.about-title {
+  margin-top: 20px;
+}
+
+.img {
+  min-width: 280px;
+  min-height: 416px;
+  margin-bottom: 30px;
+  @media screen and (min-width: $tablet) {
+    min-width: 294px;
+    margin-bottom: 0;
+  }
+  @media screen and (min-width: $desktop) {
+    min-width: 514px;
+    min-width: 426px;
+  }
+}
