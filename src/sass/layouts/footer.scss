@@ -1,0 +1,21 @@
+.footer {
+  background-color: $footer-color;
+}
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $footer-text-color;
+}
+.heard {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.link-span {
+  margin-right: 3px;
+}
+
+.goit-link {
+  color: $footer-text-color;
+}
