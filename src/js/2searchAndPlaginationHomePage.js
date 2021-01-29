@@ -3,7 +3,7 @@ const BASE = 'https://api.themoviedb.org/3';
 
 export default class ApiService {
   constructor() {
-    this.searchQ = '';
+    this.searchQ = "";
     this.page = 1;
   }
 
@@ -17,6 +17,8 @@ export default class ApiService {
         return data.results;
       });
   }
+
+
   get query() {
     return this.searchQ;
   }
