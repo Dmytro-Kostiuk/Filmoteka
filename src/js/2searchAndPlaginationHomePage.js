@@ -5,10 +5,11 @@ export default class ApiService {
   constructor() {
     this.searchQ = '';
     this.page = 1;
+    this.id = null;
   }
 
-  fetchFilms() {
-    const url = `${BASE}/trending/all/day?&page=${this.page}&api_key=${KEY}&items=10`;
+  fetchPopularFilms() {
+    const url = `${BASE}/trending/all/day?&page=${this.page}&api_key=${KEY}`;
 
     return fetch(url)
       .then(responce => responce.json())
@@ -17,6 +18,24 @@ export default class ApiService {
         return data.results;
       });
   }
+
+  fetchFilms() {
+    const url = `${BASE}/search/movie?&page=${this.page}&api_key=${KEY}&query=${this.searchQ}`;
+
+    return fetch(url)
+      .then(responce => responce.json())
+      .then(data => {
+        this.page += 1;
+        return data.results;
+      });
+  }
+
+  fetchDetailFilm() {
+    const url = `${BASE}/movie/${this.id}?api_key=${KEY}`;
+
+    return fetch(url).then(responce => responce.json());
+  }
+
   get query() {
     return this.searchQ;
   }

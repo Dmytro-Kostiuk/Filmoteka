@@ -1,0 +1,107 @@
+.modal-buttons {
+  min-width: 130px;
+  min-height: 44px;
+  border-radius: 5px;
+  border-width: 1px;
+  @media screen and (min-width: $tablet) {
+    min-width: 136px;
+  }
+  background-color: transparent;
+  border-color: $black;
+}
+
+.modal-buttons:hover {
+  background-color: $focus-color;
+  border-color: $focus-color;
+  color: $white-color;
+  transition: cubic-bezier(1, 0, 0, 0) 0.2s;
+}
+
+.watched-button {
+  margin-right: 15px;
+}
+
+.light {
+  color: $body-bg;
+}
+
+.upper-text {
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.main {
+  padding-top: 20px;
+  padding-bottom: 40px;
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+.info {
+  @media screen and (min-width: $tablet) {
+    margin-left: 30px;
+  }
+}
+
+.list-container {
+  display: flex;
+}
+
+.number {
+  color: transparent;
+  position: relative;
+}
+
+.number::before {
+  content: '7.3';
+  position: absolute;
+  color: $white-color;
+  text-align: center;
+  width: 36px;
+  border-radius: 5px;
+  background-color: $focus-color;
+}
+
+.film-name {
+  margin-bottom: 20px;
+}
+
+.list1-item {
+  color: $footer-text-color;
+  margin-bottom: 10px;
+  margin-right: 30px;
+}
+
+.list2-item {
+  margin-bottom: 10px;
+}
+
+.about {
+  margin-top: 10px;
+  margin-bottom: 40px;
+  @media screen and (min-width: $tablet) {
+    margin-bottom: 20px;
+  }
+}
+
+.about-title {
+  margin-top: 20px;
+}
+
+.img {
+  min-width: 280px;
+  min-height: 416px;
+  margin-bottom: 30px;
+  @media screen and (min-width: $tablet) {
+    min-width: 294px;
+    margin-bottom: 0;
+  }
+  @media screen and (min-width: $desktop) {
+    min-width: 514px;
+    min-width: 426px;
+  }
+}
