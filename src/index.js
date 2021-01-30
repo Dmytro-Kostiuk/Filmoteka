@@ -13,3 +13,27 @@ bodyRef.insertAdjacentHTML('beforeend', header);
 bodyRef.insertAdjacentHTML('beforeend', homePage);
 bodyRef.insertAdjacentHTML('beforeend', detailsPage);
 bodyRef.insertAdjacentHTML('beforeend', footer);
+
+const refs = {
+  openModalBtn: document.querySelector("[data-open-modal]"),
+  modal: document.querySelector(".backdrop"),
+  };
+
+  refs.openModalBtn.addEventListener("click", toggleModal);
+
+  function toggleModal() {
+    refs.modal.classList.toggle("is-hidden");
+}
+
+  window.addEventListener('keydown', event =>{
+      console.log(event.code)
+      if(event.code=== "Escape"){
+         toggleModal();
+   
+      }
+  })
+
+  
+
+
+
