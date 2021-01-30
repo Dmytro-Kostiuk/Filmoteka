@@ -31,6 +31,15 @@ const refs = {
   })
 
   
+refs.modal.addEventListener('click', event => {
+  if (event.target === refs.modal) toggleModal();
+});
+  
+      
+
+
+
+  
 
 
 
