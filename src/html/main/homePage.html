@@ -1,62 +1,47 @@
+<header class="header">
+  <div class="container">
+    <div class="main-navigation">
+      <a href="#" class="link">
+        <svg class="icon-logo" width="24" height="24">
+          <use href="../../images/sprite.svg#filmlogo"></use>
+        </svg>
+        <span class="text-logo">Filmoteka</span>
+      </a>
+
+      <ul class="list navigation">
+        <li class="nav-list">
+          <a href="#" class="link nav-link current">HOME</a>
+        </li>
+        <li class="nav-list">
+          <a href="#" data-link class="link nav-link">MY LIBRARY</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Разметка формы для страницы home page -->
+    <form action="" class="form">
+      <input
+        type="text"
+        name="query"
+        placeholder="Поиск фильмов"
+        class="form-input"
+      />
+      <button type="submit" class="form-button">
+        <svg class="icon-logo" width="12" height="12">
+          <use href="../../images/sprite.svg#search"></use>
+        </svg>
+      </button>
+    </form>
+
+    <p class="search-error hidden">
+      Search result not successful. Enter the correct movie name and
+    </p>
+  </div>
+</header>
 <main>
-    <section class="section">
-        <div class="container">
-            <ul class="list films-list">
-                <li class="film-item">
-                    <img class="img-films" src="../../images/Rectangle 5.jpg" alt="">
-                    <h2 class="tittle-film">Greyhound</h2>
-                    <p class="genre-film">Drama, Action | 2020
-                    </p>
-                </li>
-                <li class="film-item">
-                    <img class="img-films" src="../../images/Rectangle 5.jpg" alt="">
-                    <h2 class="tittle-film">Greyhound</h2>
-                    <p class="genre-film">Drama, Action | 2020
-                    </p>
-                </li>
-                <li class="film-item">
-                    <img class="img-films" src="../../images/Rectangle 5.jpg" alt="">
-                    <h2 class="tittle-film">Greyhound</h2>
-                    <p class="genre-film">Drama, Action | 2020
-                    </p>
-                </li>
-                <li class="film-item">
-                    <img class="img-films" src="../../images/Rectangle 5.jpg" alt="">
-                    <h2 class="tittle-film">Greyhound</h2>
-                    <p class="genre-film">Drama, Action | 2020
-                    </p>
-                </li>
-                <li class="film-item">
-                    <img class="img-films" src="../../images/Rectangle 5.jpg" alt="">
-                    <h2 class="tittle-film">Greyhound</h2>
-                    <p class="genre-film">Drama, Action | 2020
-                    </p>
-                </li>
-                <li class="film-item">
-                    <img class="img-films" src="../../images/Rectangle 5.jpg" alt="">
-                    <h2 class="tittle-film">Greyhound</h2>
-                    <p class="genre-film">Drama, Action | 2020
-                    </p>
-                </li>
-                <li class="film-item">
-                    <img class="img-films" src="../../images/Rectangle 5.jpg" alt="">
-                    <h2 class="tittle-film">Greyhound</h2>
-                    <p class="genre-film">Drama, Action | 2020
-                    </p>
-                </li>
-                <li class="film-item">
-                    <img class="img-films" src="../../images/Rectangle 5.jpg" alt="">
-                    <h2 class="tittle-film">Greyhound</h2>
-                    <p class="genre-film">Drama, Action | 2020
-                    </p>
-                </li>
-                <li class="film-item">
-                    <img class="img-films" src="../../images/Rectangle 5.jpg" alt="">
-                    <h2 class="tittle-film">Greyhound</h2>
-                    <p class="genre-film">Drama, Action | 2020
-                    </p>
-                </li>
-            </ul>
-        </div>
-    </section>
+  <section class="section">
+    <div class="container">
+      <ul class="list films-list"></ul>
+    </div>
+  </section>
 </main>

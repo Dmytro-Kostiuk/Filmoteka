@@ -20,20 +20,20 @@
 
 .film-item {
   height: 100%;
-  &:not(:last-child) {
-    margin-bottom: 20px;
-    @media screen and (min-width: $tablet) and (max-width: 1023px) {
-      width: calc((100% - 60px) / 2);
-    }
-    @media screen and (min-width: $tablet) {
-      &:not(:last-child) {
-        margin-bottom: 30px;
-      }
-    }
-    @media screen and (min-width: $desktop) {
-      width: calc((100% - 40px) / 3);
+  // &:not(:last-child) {
+  margin-bottom: 20px;
+  @media screen and (min-width: $tablet) and (max-width: 1023px) {
+    width: calc((100% - 60px) / 2);
+  }
+  @media screen and (min-width: $tablet) {
+    &:not(:last-child) {
+      margin-bottom: 30px;
     }
   }
+  @media screen and (min-width: $desktop) {
+    width: calc((100% - 40px) / 3);
+  }
+  // }
 }
 
 .films-list {
