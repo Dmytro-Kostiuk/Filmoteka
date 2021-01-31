@@ -4,7 +4,9 @@ import detailsPage from './html/main/detailsPage.html';
 import ApiService from './js/2searchAndPlaginationHomePage';
 import { data } from 'autoprefixer';
 import detailPage from './templates/detailPage.hbs';
-import homePage from './js/1initialHomePage';
+import renderHomePage from './js/1initialHomePage';
+
 const bodyRef = document.querySelector('body');
 const apiService = new ApiService();
-homePage();
+
+renderHomePage();
