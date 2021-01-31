@@ -10,7 +10,9 @@
             <li class="list1-item">Genre</li>
         </ul>
         <ul class="list">
-            <li class="list2-item"><span class="number">{{vote_average}}</span>/ {{vote_count}}</li>
+            <li class="list2-item">
+                <div class="number"><span>{{vote_average}}</span></div>/ {{vote_count}}
+            </li>
             <li class="list2-item">{{popularity}}</li>
             <li class="upper-text list2-item">{{original_title}}</li>
             <li class="list2-item">{{#each genres}} {{name}} ,{{/each}}</li>
