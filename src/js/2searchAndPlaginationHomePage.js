@@ -1,6 +1,7 @@
 'use strict';
 
 import { adoptPPFetch } from './plagins';
+import jQuery from 'jquery';
 
 const KEY = 'da596067165f304bd61b992449ff5b38';
 const BASE = 'https://api.themoviedb.org/3';
@@ -29,10 +30,16 @@ export default class ApiService {
     return 4;
   }
 
+  fetchPopularFilmsCount() {
+    const url = `${BASE}/trending/movie/day?&page=${1}&api_key=${KEY}`;
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => data.total_results);
+  }
+
   fetchPopularFilms() {
     return adoptPPFetch({
       page: this.page,
-      sPerPage: 20,
       perPage: this.getPerPage(),
       doFetch: page => {
         const url = `${BASE}/trending/movie/day?&page=${page}&api_key=${KEY}`;
@@ -46,6 +53,13 @@ export default class ApiService {
     });
   }
 
+  fetchFilmsCount() {
+    const url = `${BASE}/search/movie?&page=${1}&api_key=${KEY}&query=${this.searchQ}`;
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => data.total_results);
+  }
+
   fetchFilms() {
     return adoptPPFetch({
       page: this.page,
@@ -56,7 +70,6 @@ export default class ApiService {
         return fetch(url)
           .then(response => response.json())
           .then(data => {
-            this.page += 1;
             return data.results;
           });
       },

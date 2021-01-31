@@ -5,7 +5,7 @@ import footer from '../html/footer.html';
 import ApiService from './2searchAndPlaginationHomePage';
 import popularFilms from '../templates/popularFilms.hbs';
 import openModal from './4filmDetailsPage';
-import homePage from './1initialHomePage';
+import renderHomePage from './1initialHomePage';
 
 const apiService = new ApiService();
 
@@ -24,8 +24,8 @@ export default function libraryPage() {
   const logolink = document.querySelector('.link');
   const homelink = document.querySelector('[data-link]');
 
-  homelink.addEventListener('click', homePage);
-  logolink.addEventListener('click', homePage);
+  homelink.addEventListener('click', renderHomePage);
+  logolink.addEventListener('click', renderHomePage);
 
   ulRef.addEventListener('click', event => {
     if (event.target.nodeName === 'IMG') {
