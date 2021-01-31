@@ -37,6 +37,43 @@ export default class ApiService {
     return fetch(url).then(responce => responce.json());
   }
 
+  fetchGenres() {
+    const url = `${BASE}/genre/movie/list?api_key=${KEY}`;
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        return data.genres;
+      });
+  }
+
+  insertGenres() {
+    return this.fetchPopularFilms().then(data => {
+      return this.fetchGenres().then(genres => {
+        return data.map(film => ({
+          ...film,
+          release_date: film.release_date.split('-')[0],
+          genres: film.genre_ids
+            .map(id => genres.filter(elem => elem.id === id))
+            .flat(),
+        }));
+      });
+    });
+  }
+
+  insertSearhGenres() {
+    return this.fetchFilms().then(data => {
+      return this.fetchGenres().then(genres => {
+        return data.map(film => ({
+          ...film,
+          release_date: film.release_date.split('-')[0],
+          genres: film.genre_ids
+            .map(id => genres.filter(elem => elem.id === id))
+            .flat(),
+        }));
+      });
+    });
+  }
+
   get query() {
     return this.searchQ;
   }

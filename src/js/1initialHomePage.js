@@ -6,6 +6,7 @@ import ApiService from './2searchAndPlaginationHomePage';
 import popularFilms from '../templates/popularFilms.hbs';
 import openModal from './4filmDetailsPage';
 import libraryPage from './5libraryPage';
+import { data } from 'autoprefixer';
 
 const apiService = new ApiService();
 export default function homePage() {
@@ -41,19 +42,21 @@ export default function homePage() {
 
   logolink.addEventListener('click', homePage);
 
-  apiService.fetchPopularFilms().then(data => {
-    ulRef.insertAdjacentHTML('beforeend', popularFilms(data));
-  });
+  apiService.insertGenres().then(markupFilms);
+
+  function markupFilms(films) {
+    ulRef.insertAdjacentHTML('beforeend', popularFilms(films));
+  }
 
   function searchFilms(event) {
     event.preventDefault();
     errorMessage.classList.add('hidden');
     apiService.query = event.currentTarget.elements.query.value;
     if (apiService.query.trim() !== '') {
-      apiService.fetchFilms().then(data => {
+      apiService.insertSearhGenres().then(data => {
         if (data.length !== 0) {
           ulRef.innerHTML = '';
-          ulRef.insertAdjacentHTML('beforeend', popularFilms(data));
+          markupFilms(data);
         } else {
           errorMessage.classList.remove('hidden');
         }
