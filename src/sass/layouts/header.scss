@@ -14,13 +14,42 @@
 
   @media screen and (min-width: $tablet) {
     background-image: url(../images/header/home/tablet-img.jpg);
-    background-position: cover;
     padding-bottom: 60px;
   }
 
   @media screen and (min-width: $desktop) {
     background-image: url(../images/header/home/desktop-img.jpg);
-    background-position: cover;
+  }
+}
+
+.library-header {
+  padding-bottom: 70px;
+  background-image: url(../images/header/library/mobile-img.jpg);
+  background-position: bottom;
+
+  @media screen and (min-width: $tablet) {
+    background-image: url(../images/header/library/tablet-img.jpg);
+    padding-bottom: 65px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    background-image: url(../images/header/library/desktop-img.jpg);
+    background-size: cover;
+  }
+}
+
+.modal-header {
+  background-image: url(../images/header/modal/mobile-img.jpg);
+  padding-bottom: 160px;
+  background-position: right top;
+
+  @media screen and (min-width: $tablet) {
+    background-image: url(../images/header/library/tablet-img.jpg);
+  }
+
+  @media screen and (min-width: $desktop) {
+    background-image: url(../images/header/modal/desktop-img.jpg);
+    padding-bottom: 160px;
   }
 }
 
@@ -164,6 +193,13 @@
 
     @media screen and (min-width: $tablet) {
       width: 136px;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $focus-color;
+      border: none;
+      transition: cubic-bezier(1, 0, 0, 0) 0.2s;
     }
   }
 
