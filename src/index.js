@@ -9,4 +9,14 @@ import renderHomePage from './js/1initialHomePage';
 const bodyRef = document.querySelector('body');
 const apiService = new ApiService();
 
+
+      
+
+
+
+  
+
+
+
 renderHomePage();
+
