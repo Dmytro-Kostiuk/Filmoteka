@@ -53,7 +53,11 @@ export default class ApiService {
           ...film,
           release_date: film.release_date.split('-')[0],
           genres: film.genre_ids
-            .map(id => genres.filter(elem => elem.id === id))
+            .map(id =>
+              genres
+                .filter(elem => elem.id === id)
+                .map(id => (id.name = ' ' + id.name)),
+            )
             .flat(),
         }));
       });
@@ -67,7 +71,11 @@ export default class ApiService {
           ...film,
           release_date: film.release_date.split('-')[0],
           genres: film.genre_ids
-            .map(id => genres.filter(elem => elem.id === id))
+            .map(id =>
+              genres
+                .filter(elem => elem.id === id)
+                .map(id => (id.name = ' ' + id.name)),
+            )
             .flat(),
         }));
       });
