@@ -3,9 +3,11 @@ import ApiService from './2searchAndPlaginationHomePage';
 import detailPage from '../html/main/detailsPage.html';
 import detailPageTemplate from '../templates/detailPage.hbs';
 import libraryPage from './5libraryPage';
+
 import homePage from './1initialHomePage';
 const lsWatched = [];
 const lsQueue = [];
+
 
 export default function openModal(id) {
   const apiService = new ApiService();
@@ -53,8 +55,8 @@ export default function openModal(id) {
     window.addEventListener('keydown', Esc);
   });
 
-  refs.logolink.addEventListener('click', homePage);
-  refs.homelink.addEventListener('click', homePage);
+  refs.logolink.addEventListener('click', renderHomePage);
+  refs.homelink.addEventListener('click', renderHomePage);
   refs.liblink.addEventListener('click', libraryPage);
   modal.addEventListener('click', closeclick);
 
