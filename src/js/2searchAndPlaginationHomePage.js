@@ -54,7 +54,9 @@ export default class ApiService {
   }
 
   fetchFilmsCount() {
-    const url = `${BASE}/search/movie?&page=${1}&api_key=${KEY}&query=${this.searchQ}`;
+    const url = `${BASE}/search/movie?&page=${1}&api_key=${KEY}&query=${
+      this.searchQ
+    }`;
     return fetch(url)
       .then(response => response.json())
       .then(data => data.total_results);
@@ -89,6 +91,17 @@ export default class ApiService {
       .then(data => {
         return data.genres;
       });
+  }
+
+  fetchDetailFilmWithNameGerges() {
+    return this.fetchDetailFilm().then(data => {
+      return {
+        ...data,
+
+        release_date: data.release_date.split('-')[0],
+        genresName: data.genres.map(id => (id.name = ' ' + id.name)),
+      };
+    });
   }
 
   insertGenres() {

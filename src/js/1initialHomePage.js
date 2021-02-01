@@ -9,16 +9,19 @@ import libraryPage from './5libraryPage';
 import { data } from 'autoprefixer';
 import { addPaginator } from './paginator';
 
-
 const apiService = new ApiService();
 
 export default function renderHomePage() {
   const refs = getRefs();
   refs.bodyRef.innerHTML = '';
+  apiService.resetPage();
 
   refs.bodyRef.insertAdjacentHTML('beforeend', homePageHtml);
   refs.bodyRef.insertAdjacentHTML('beforeend', footer);
-  refs.bodyRef.insertAdjacentHTML('beforeend', `<div class="backdrop is-hidden"></div>`);
+  refs.bodyRef.insertAdjacentHTML(
+    'beforeend',
+    `<div class="backdrop is-hidden"></div>`,
+  );
 
   const ulRef = document.querySelector('.films-list');
   const formRef = document.querySelector('.form');
@@ -43,16 +46,8 @@ export default function renderHomePage() {
   logoLink.addEventListener('click', renderHomePage);
 
   apiService.fetchPopularFilmsCount().then(totalResults => {
-    apiService.fetchPopularFilms().then(results => {
+    apiService.insertGenres().then(results => {
       ulRef.insertAdjacentHTML('beforeend', renderPopularFilms(results));
-      //
-
-
-//   apiService.insertGenres().then(markupFilms);
-
-//   function markupFilms(films) {
-//     ulRef.insertAdjacentHTML('beforeend', popularFilms(films));
-//   }
 
       addPaginator({
         elementRef: document.querySelector('#paginator-placeholder'),
@@ -60,7 +55,7 @@ export default function renderHomePage() {
         perPage: apiService.getPerPage(),
         loadPage: function (page) {
           apiService.page = page;
-          apiService.fetchPopularFilms().then(results => {
+          apiService.insertGenres().then(results => {
             ulRef.innerHTML = '';
             ulRef.insertAdjacentHTML('beforeend', renderPopularFilms(results));
           });
@@ -69,7 +64,6 @@ export default function renderHomePage() {
     });
   });
 
-
   function searchFilms(event) {
     event.preventDefault();
 
@@ -77,15 +71,6 @@ export default function renderHomePage() {
     apiService.query = event.currentTarget.elements.query.value;
 
     if (apiService.query.trim() !== '') {
-
-//       apiService.insertSearhGenres().then(data => {
-//         if (data.length !== 0) {
-//           ulRef.innerHTML = '';
-//           markupFilms(data);
-//         } else {
-//           errorMessage.classList.remove('hidden');
-//         }
-
       apiService.resetPage();
       apiService.fetchFilmsCount().then(totalResults => {
         apiService.fetchFilms().then(data => {
@@ -100,7 +85,10 @@ export default function renderHomePage() {
                 apiService.page = page;
                 apiService.fetchFilms().then(results => {
                   ulRef.innerHTML = '';
-                  ulRef.insertAdjacentHTML('beforeend', renderPopularFilms(results));
+                  ulRef.insertAdjacentHTML(
+                    'beforeend',
+                    renderPopularFilms(results),
+                  );
                 });
               },
             });
@@ -108,7 +96,6 @@ export default function renderHomePage() {
             errorMessage.classList.remove('hidden');
           }
         });
-
       });
     }
   }

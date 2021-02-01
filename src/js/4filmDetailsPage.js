@@ -22,7 +22,7 @@ export default function openModal(id) {
   };
 
   apiService.id = id;
-  apiService.fetchDetailFilm().then(data => {
+  apiService.fetchDetailFilmWithNameGerges().then(data => {
     modal.classList.remove('is-hidden');
     refs.modalContent.insertAdjacentHTML('beforeend', detailPageTemplate(data));
     const watchBtnRef = document.querySelector('.watched-button');

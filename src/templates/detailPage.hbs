@@ -1,6 +1,6 @@
 <img class="img" src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="{{title}}"></img>
 <div class="info" data-id={{id}} data-image={{poster_path}} data-title="{{title}}" data-vote={{vote_average}}
-    data-release={{release_date}} data-genres="{{#each genres}} {{name}} ,{{/each}}">
+    data-release={{release_date}} data-genres="{{genresName}}">
     <h1 class="upper-text film-name">{{title}}</h1>
     <div class="list-container">
         <ul class="list">
@@ -15,7 +15,7 @@
             </li>
             <li class="list2-item">{{popularity}}</li>
             <li class="upper-text list2-item">{{original_title}}</li>
-            <li class="list2-item">{{#each genres}} {{name}} ,{{/each}}</li>
+            <li class="list2-item">{{genresName}}</li>
         </ul>
     </div>
     <section>

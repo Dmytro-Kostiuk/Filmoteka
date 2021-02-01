@@ -52,13 +52,14 @@
 }
 
 .number {
-  display: inline;
+  display: inline-block;
   padding-left: 3px;
   padding-right: 3px;
   margin-right: 2px;
   color: $white-color;
   text-align: center;
   width: 36px;
+  height: 16px;
   border-radius: 5px;
   background-color: $focus-color;
 }
