@@ -4,10 +4,9 @@ import detailPage from '../html/main/detailsPage.html';
 import detailPageTemplate from '../templates/detailPage.hbs';
 import libraryPage from './5libraryPage';
 
-import homePage from './1initialHomePage';
+import renderHomePage from './1initialHomePage';
 const lsWatched = [];
 const lsQueue = [];
-
 
 export default function openModal(id) {
   const apiService = new ApiService();
@@ -40,6 +39,7 @@ export default function openModal(id) {
       libInfo.image = infoBoxRef.dataset.image;
       libInfo.title = infoBoxRef.dataset.title;
       libInfo.vote = infoBoxRef.dataset.vote;
+      libInfo.reliaseDate = infoBoxRef.dataset.release;
       lsWatched.push(libInfo);
       localStorage.setItem('watched', JSON.stringify(lsWatched));
     }
