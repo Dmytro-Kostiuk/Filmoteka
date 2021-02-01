@@ -13,6 +13,7 @@ const apiService = new ApiService();
 
 export default function renderHomePage() {
   const refs = getRefs();
+
   refs.bodyRef.innerHTML = '';
   apiService.resetPage();
 

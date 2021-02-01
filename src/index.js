@@ -5,18 +5,9 @@ import ApiService from './js/2searchAndPlaginationHomePage';
 import { data } from 'autoprefixer';
 import detailPage from './templates/detailPage.hbs';
 import renderHomePage from './js/1initialHomePage';
+import './js/auth';
 
 const bodyRef = document.querySelector('body');
 const apiService = new ApiService();
 
-
-      
-
-
-
-  
-
-
-
 renderHomePage();
-
