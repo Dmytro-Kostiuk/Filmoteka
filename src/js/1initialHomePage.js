@@ -6,7 +6,9 @@ import ApiService from './2searchAndPlaginationHomePage';
 import renderPopularFilms from '../templates/popularFilms.hbs';
 import openModal from './4filmDetailsPage';
 import libraryPage from './5libraryPage';
+import { data } from 'autoprefixer';
 import { addPaginator } from './paginator';
+
 
 const apiService = new ApiService();
 
@@ -45,6 +47,13 @@ export default function renderHomePage() {
       ulRef.insertAdjacentHTML('beforeend', renderPopularFilms(results));
       //
 
+
+//   apiService.insertGenres().then(markupFilms);
+
+//   function markupFilms(films) {
+//     ulRef.insertAdjacentHTML('beforeend', popularFilms(films));
+//   }
+
       addPaginator({
         elementRef: document.querySelector('#paginator-placeholder'),
         totalResults: totalResults,
@@ -60,6 +69,7 @@ export default function renderHomePage() {
     });
   });
 
+
   function searchFilms(event) {
     event.preventDefault();
 
@@ -67,6 +77,15 @@ export default function renderHomePage() {
     apiService.query = event.currentTarget.elements.query.value;
 
     if (apiService.query.trim() !== '') {
+
+//       apiService.insertSearhGenres().then(data => {
+//         if (data.length !== 0) {
+//           ulRef.innerHTML = '';
+//           markupFilms(data);
+//         } else {
+//           errorMessage.classList.remove('hidden');
+//         }
+
       apiService.resetPage();
       apiService.fetchFilmsCount().then(totalResults => {
         apiService.fetchFilms().then(data => {
@@ -89,6 +108,7 @@ export default function renderHomePage() {
             errorMessage.classList.remove('hidden');
           }
         });
+
       });
     }
   }
