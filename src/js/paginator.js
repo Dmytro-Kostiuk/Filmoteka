@@ -8,6 +8,8 @@ export function addPaginator({ elementRef, totalResults, perPage, loadPage }) {
     items: totalResults,
     itemsOnPage: perPage,
     cssStyle: 'light-theme',
+    prevText: '_',
+    nextText: '_',
     onPageClick: function (page, event) {
       loadPage(page);
     },
