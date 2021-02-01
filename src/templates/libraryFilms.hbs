@@ -1,63 +1,8 @@
-<main>
-    <section class="section">
-        <div class="container">
-            <ul class="list films-list">
-                <li class="film-item">
-                    <img class="img-films" src="../../images/Rectangle 5.jpg" alt="">
-                    <h2 class="tittle-film">Greyhound</h2>
-                    <p class="genre-film">Drama, Action | 2020<span class="rating-films">8.0</span>
-                    </p>
-                </li>
-                <li class="film-item">
-                    <img class="img-films" src="../../images/Rectangle 5.jpg" alt="">
-                    <h2 class="tittle-film">Greyhound</h2>
-                    <p class="genre-film">Drama, Action | 2020<span class="rating-films">8.0</span>
-                    </p>
-                </li>
-                <li class="film-item">
-                    <img class="img-films" src="../../images/Rectangle 5.jpg" alt="">
-                    <h2 class="tittle-film">Greyhound</h2>
-                    <p class="genre-film">Drama, Action | 2020<span class="rating-fil<span class="
-                            rating-films">8.0</span>ms">8.0</span>
-                    </p>
-                </li>
-                <li class="film-item">
-                    <img class="img-films" src="../../images/Rectangle 5.jpg" alt="">
-                    <h2 class="tittle-film">Greyhound</h2>
-                    <p class="genre-film">Drama, Action | 2020<span class="rating-films">8.0</span>
-                    </p>
-                </li>
-                <li class="film-item">
-                    <img class="img-films" src="../../images/Rectangle 5.jpg" alt="">
-                    <h2 class="tittle-film">Greyhound</h2>
-                    <p class="genre-film">Drama, Action | 2020<span class="rating-films">8.0</span>
-                    </p>
-                </li>
-                <li class="film-item">
-                    <img class="img-films" src="../../images/Rectangle 5.jpg" alt="">
-                    <h2 class="tittle-film">Greyhound</h2>
-                    <p class="genre-film">Drama, Action | 2020<span class="rating-films">8.0</span>
-                    </p>
-                </li>
-                <li class="film-item">
-                    <img class="img-films" src="../../images/Rectangle 5.jpg" alt="">
-                    <h2 class="tittle-film">Greyhound</h2>
-                    <p class="genre-film">Drama, Action | 2020<span class="rating-films">8.0</span>
-                    </p>
-                </li>
-                <li class="film-item">
-                    <img class="img-films" src="../../images/Rectangle 5.jpg" alt="">
-                    <h2 class="tittle-film">Greyhound</h2>
-                    <p class="genre-film">Drama, Action | 2020<span class="rating-films">8.0</span>
-                    </p>
-                </li>
-                <li class="film-item">
-                    <img class="img-films" src="../../images/Rectangle 5.jpg" alt="">
-                    <h2 class="tittle-film">Greyhound</h2>
-                    <p class="genre-film">Drama, Action | 2020<span class="rating-films">8.0</span>
-                    </p>
-                </li>
-            </ul>
-        </div>
-    </section>
-</main>
+{{#each this}}
+<li class="film-item">
+    <img class="img-films" data-id="{{id}}" src="https://image.tmdb.org/t/p/w500{{image}}" alt="{{title}}">
+    <h2 class="tittle-film">{{title}}</h2>
+    <p class="genre-film">{{genres}} | {{reliaseDate}}<span class="rating-films">{{vote}}</span>
+    </p>
+</li>
+{{/each}}

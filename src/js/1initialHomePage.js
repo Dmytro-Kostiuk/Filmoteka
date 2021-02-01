@@ -1,30 +1,30 @@
 'use strict';
-import getRef from './refs';
-import homePagehtml from '../html/main/homePage.html';
+import getRefs from './refs';
+import homePageHtml from '../html/main/homePage.html';
 import footer from '../html/footer.html';
 import ApiService from './2searchAndPlaginationHomePage';
-import popularFilms from '../templates/popularFilms.hbs';
+import renderPopularFilms from '../templates/popularFilms.hbs';
 import openModal from './4filmDetailsPage';
 import libraryPage from './5libraryPage';
 import { data } from 'autoprefixer';
+import { addPaginator } from './paginator';
+
 
 const apiService = new ApiService();
-export default function homePage() {
-  const refs = getRef();
+
+export default function renderHomePage() {
+  const refs = getRefs();
   refs.bodyRef.innerHTML = '';
 
-  refs.bodyRef.insertAdjacentHTML('beforeend', homePagehtml);
+  refs.bodyRef.insertAdjacentHTML('beforeend', homePageHtml);
   refs.bodyRef.insertAdjacentHTML('beforeend', footer);
-  refs.bodyRef.insertAdjacentHTML(
-    'beforeend',
-    `<div class="backdrop is-hidden"></div>`,
-  );
+  refs.bodyRef.insertAdjacentHTML('beforeend', `<div class="backdrop is-hidden"></div>`);
 
   const ulRef = document.querySelector('.films-list');
   const formRef = document.querySelector('.form');
   const errorMessage = document.querySelector('.search-error');
   const libraryLink = document.querySelector('[data-link]');
-  const logolink = document.querySelector('.link');
+  const logoLink = document.querySelector('.link');
 
   formRef.addEventListener('submit', searchFilms);
   libraryLink.addEventListener('click', event => {
@@ -40,26 +40,75 @@ export default function homePage() {
     }
   });
 
-  logolink.addEventListener('click', homePage);
+  logoLink.addEventListener('click', renderHomePage);
 
-  apiService.insertGenres().then(markupFilms);
+  apiService.fetchPopularFilmsCount().then(totalResults => {
+    apiService.fetchPopularFilms().then(results => {
+      ulRef.insertAdjacentHTML('beforeend', renderPopularFilms(results));
+      //
 
-  function markupFilms(films) {
-    ulRef.insertAdjacentHTML('beforeend', popularFilms(films));
-  }
+
+//   apiService.insertGenres().then(markupFilms);
+
+//   function markupFilms(films) {
+//     ulRef.insertAdjacentHTML('beforeend', popularFilms(films));
+//   }
+
+      addPaginator({
+        elementRef: document.querySelector('#paginator-placeholder'),
+        totalResults: totalResults,
+        perPage: apiService.getPerPage(),
+        loadPage: function (page) {
+          apiService.page = page;
+          apiService.fetchPopularFilms().then(results => {
+            ulRef.innerHTML = '';
+            ulRef.insertAdjacentHTML('beforeend', renderPopularFilms(results));
+          });
+        },
+      });
+    });
+  });
+
 
   function searchFilms(event) {
     event.preventDefault();
+
     errorMessage.classList.add('hidden');
     apiService.query = event.currentTarget.elements.query.value;
+
     if (apiService.query.trim() !== '') {
-      apiService.insertSearhGenres().then(data => {
-        if (data.length !== 0) {
-          ulRef.innerHTML = '';
-          markupFilms(data);
-        } else {
-          errorMessage.classList.remove('hidden');
-        }
+
+//       apiService.insertSearhGenres().then(data => {
+//         if (data.length !== 0) {
+//           ulRef.innerHTML = '';
+//           markupFilms(data);
+//         } else {
+//           errorMessage.classList.remove('hidden');
+//         }
+
+      apiService.resetPage();
+      apiService.fetchFilmsCount().then(totalResults => {
+        apiService.fetchFilms().then(data => {
+          if (data.length !== 0) {
+            ulRef.innerHTML = '';
+            ulRef.insertAdjacentHTML('beforeend', renderPopularFilms(data));
+            addPaginator({
+              elementRef: document.querySelector('#paginator-placeholder'),
+              totalResults: totalResults,
+              perPage: apiService.getPerPage(),
+              loadPage: function (page) {
+                apiService.page = page;
+                apiService.fetchFilms().then(results => {
+                  ulRef.innerHTML = '';
+                  ulRef.insertAdjacentHTML('beforeend', renderPopularFilms(results));
+                });
+              },
+            });
+          } else {
+            errorMessage.classList.remove('hidden');
+          }
+        });
+
       });
     }
   }

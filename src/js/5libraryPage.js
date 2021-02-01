@@ -3,9 +3,9 @@ import getRef from './refs';
 import libraryPageHtml from '../html/main/myFilmLibraryPage.html';
 import footer from '../html/footer.html';
 import ApiService from './2searchAndPlaginationHomePage';
-import popularFilms from '../templates/popularFilms.hbs';
+import libFilms from '../templates/libraryFilms.hbs';
 import openModal from './4filmDetailsPage';
-import homePage from './1initialHomePage';
+import renderHomePage from './1initialHomePage';
 
 const apiService = new ApiService();
 
@@ -19,13 +19,14 @@ export default function libraryPage() {
     'beforeend',
     `<div class="backdrop is-hidden"></div>`,
   );
-
   const ulRef = document.querySelector('.films-list');
   const logolink = document.querySelector('.link');
   const homelink = document.querySelector('[data-link]');
-
-  homelink.addEventListener('click', homePage);
-  logolink.addEventListener('click', homePage);
+  getLSQueue();
+  const g = getLSWatched();
+  ulRef.insertAdjacentHTML('beforeend', libFilms(g));
+  homelink.addEventListener('click', renderHomePage);
+  logolink.addEventListener('click', renderHomePage);
 
   ulRef.addEventListener('click', event => {
     if (event.target.nodeName === 'IMG') {
@@ -34,4 +35,15 @@ export default function libraryPage() {
       openModal(id);
     }
   });
+}
+//обработка локал
+function getLSQueue() {
+  const filmsQueue = JSON.parse(localStorage.getItem('queue'));
+  console.log(filmsQueue);
+}
+
+function getLSWatched() {
+  const filmsWatched = JSON.parse(localStorage.getItem('watched'));
+  console.log(filmsWatched);
+  return filmsWatched;
 }
