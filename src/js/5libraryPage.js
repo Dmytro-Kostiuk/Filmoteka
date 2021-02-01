@@ -12,14 +12,14 @@ const apiService = new ApiService();
 export default function libraryPage() {
   const refs = getRef();
   refs.bodyRef.innerHTML = '';
-
+  getLSQueue();
+  getLSWatched();
   refs.bodyRef.insertAdjacentHTML('beforeend', libraryPageHtml);
   refs.bodyRef.insertAdjacentHTML('beforeend', footer);
   refs.bodyRef.insertAdjacentHTML(
     'beforeend',
     `<div class="backdrop is-hidden"></div>`,
   );
-
   const ulRef = document.querySelector('.films-list');
   const logolink = document.querySelector('.link');
   const homelink = document.querySelector('[data-link]');
@@ -34,4 +34,14 @@ export default function libraryPage() {
       openModal(id);
     }
   });
+}
+//обработка локал
+function getLSQueue() {
+  const filmsQueue = JSON.parse(localStorage.getItem('queue'));
+  console.log(filmsQueue);
+}
+
+function getLSWatched() {
+  const filmsWatched = JSON.parse(localStorage.getItem('watched'));
+  console.log(filmsWatched);
 }
