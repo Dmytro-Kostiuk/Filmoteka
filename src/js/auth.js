@@ -88,17 +88,5 @@ export function init() {
     }
   }
 
-  firebase.initializeApp(firebaseConfig);
 
-  const bodyRef = document.querySelector('body');
-  console.log(bodyRef);
-
-  const mainRef = document.querySelector('main');
-  console.log(mainRef);
-
-  const loginRef = document.querySelector('.js-login');
-  console.log(loginRef);
-
-  const signupRef = document.getElementById('js');
-  console.dir(signupRef);
 }
