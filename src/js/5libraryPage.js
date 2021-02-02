@@ -50,8 +50,14 @@ export default function libraryPage() {
     watchedPageBtnRef.classList.add('current');
     const watch = JSON.parse(localStorage.getItem('watched'));
     console.log(watch);
-
-    ulRef.insertAdjacentHTML('beforeend', libFilms(watch));
+    if (watch === null) {
+      ulRef.insertAdjacentHTML(
+        'beforeend',
+        `<li><div class="notification"><h2>You do not have to watched movies. Add them.</h2></div></li>`,
+      );
+    } else {
+      ulRef.insertAdjacentHTML('beforeend', libFilms(watch));
+    }
   }
   function toDrowQueue() {
     ulRef.innerHTML = '';
@@ -60,6 +66,14 @@ export default function libraryPage() {
     watchedPageBtnRef.classList.remove('current');
 
     const queue = JSON.parse(localStorage.getItem('queue'));
-    ulRef.insertAdjacentHTML('beforeend', libFilms(queue));
+    console.log(queue);
+    if (queue === null) {
+      ulRef.insertAdjacentHTML(
+        'beforeend',
+        `<li><div class="notification"><h2>You do not have to queue movies to watch. Add them.</h2></div></li>`,
+      );
+    } else {
+      ulRef.insertAdjacentHTML('beforeend', libFilms(queue));
+    }
   }
 }
