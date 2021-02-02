@@ -9,6 +9,8 @@ import libraryPage from './5libraryPage';
 import { data } from 'autoprefixer';
 import { addPaginator } from './paginator';
 import * as auth from './auth';
+import { getPerPage } from './variables';
+
 
 const apiService = new ApiService();
 
@@ -20,10 +22,6 @@ export default function renderHomePage() {
 
   refs.bodyRef.insertAdjacentHTML('beforeend', homePageHtml);
   refs.bodyRef.insertAdjacentHTML('beforeend', footer);
-  refs.bodyRef.insertAdjacentHTML(
-    'beforeend',
-    `<div class="backdrop is-hidden"></div>`,
-  );
 
   const ulRef = document.querySelector('.films-list');
   const formRef = document.querySelector('.form');
@@ -40,7 +38,10 @@ export default function renderHomePage() {
   ulRef.addEventListener('click', event => {
     if (event.target.nodeName === 'IMG') {
       const id = event.target.getAttribute('data-id');
-
+      refs.bodyRef.insertAdjacentHTML(
+        'beforeend',
+        `<div class="backdrop is-hidden "></div>`,
+      );
       openModal(id);
     }
   });
@@ -54,17 +55,29 @@ export default function renderHomePage() {
       addPaginator({
         elementRef: document.querySelector('#paginator-placeholder'),
         totalResults: totalResults,
-        perPage: apiService.getPerPage(),
+        perPage: getPerPage(),
         loadPage: function (page) {
           apiService.page = page;
           apiService.insertGenres().then(results => {
             ulRef.innerHTML = '';
             ulRef.insertAdjacentHTML('beforeend', renderPopularFilms(results));
+
+            scrollToFirstFilm();
           });
         },
       });
     });
   });
+
+  function scrollToFirstFilm() {
+    const el = document.querySelectorAll('.film-item')[0];
+
+    setTimeout(function () {
+      el.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }, 50);
+  }
 
   function searchFilms(event) {
     event.preventDefault();
@@ -82,7 +95,7 @@ export default function renderHomePage() {
             addPaginator({
               elementRef: document.querySelector('#paginator-placeholder'),
               totalResults: totalResults,
-              perPage: apiService.getPerPage(),
+              perPage: getPerPage(),
               loadPage: function (page) {
                 apiService.page = page;
                 apiService.fetchFilms().then(results => {
@@ -91,6 +104,7 @@ export default function renderHomePage() {
                     'beforeend',
                     renderPopularFilms(results),
                   );
+                  scrollToFirstFilm();
                 });
               },
             });

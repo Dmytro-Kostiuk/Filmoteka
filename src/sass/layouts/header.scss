@@ -198,13 +198,16 @@
     &:hover,
     &:focus {
       background-color: $focus-color;
-      border: none;
+      // border: none;
+
+      border-color: $focus-color;
       transition: cubic-bezier(1, 0, 0, 0) 0.2s;
     }
   }
 
   .library-btn.current {
     background-color: $focus-color;
-    border: none;
+    // border: none;
+    border-color: $focus-color;
   }
 }
