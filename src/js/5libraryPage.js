@@ -6,6 +6,7 @@ import ApiService from './2searchAndPlaginationHomePage';
 import libFilms from '../templates/libraryFilms.hbs';
 import openModal from './4filmDetailsPage';
 import renderHomePage from './1initialHomePage';
+import loader from './spinner';
 
 const apiService = new ApiService();
 
