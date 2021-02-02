@@ -41,6 +41,7 @@ export default function openModal(id) {
       libInfo.title = infoBoxRef.dataset.title;
       libInfo.vote = infoBoxRef.dataset.vote;
       libInfo.reliaseDate = infoBoxRef.dataset.release;
+
       //При добавлении фильма в просмотренные проверяем
       // есть ли он в очереди.если есть удаляем
       if (queueValue && queueValue.includes(JSON.stringify(libInfo))) {
@@ -100,6 +101,7 @@ export default function openModal(id) {
     modal.classList.add('is-hidden');
 
     window.removeEventListener('keydown', Esc);
+    modal.remove();
   }
 
   function Esc(event) {

@@ -14,31 +14,18 @@ export default function libraryPage() {
   refs.bodyRef.innerHTML = '';
   refs.bodyRef.insertAdjacentHTML('beforeend', libraryPageHtml);
   refs.bodyRef.insertAdjacentHTML('beforeend', footer);
-  refs.bodyRef.insertAdjacentHTML(
-    'beforeend',
-    `<div class="backdrop is-hidden"></div>`,
-  );
-  let mainRef = document.querySelectorAll('.section')[0];
+
+  // let mainRef = document.querySelectorAll('.section')[0];
 
   //функции обновления страницы watched queue не законченые
-  function toDrowWatched() {
-    mainRef.innerHTML = '';
-    ulRef.insertAdjacentHTML('beforeend', libFilms(watch));
-  }
-  function toDrowQueue() {
-    mainRef.innerHTML = '';
-    ulRef.insertAdjacentHTML('beforeend', libFilms(queue));
-  }
 
   const ulRef = document.querySelector('.films-list');
   const logolink = document.querySelector('.link');
   const homelink = document.querySelector('[data-link]');
   const watchedPageBtnRef = document.querySelector('.watchedPageBtn');
   const queuePageBtnRef = document.querySelector('.queuePageBtn');
-  getLSQueue();
-  const watch = getLSWatched();
-  const queue = getLSQueue();
-  ulRef.insertAdjacentHTML('beforeend', libFilms(watch));
+  // ulRef.insertAdjacentHTML('beforeend', libFilms(watch));
+  toDrowWatched();
   homelink.addEventListener('click', renderHomePage);
   logolink.addEventListener('click', renderHomePage);
 
@@ -49,20 +36,30 @@ export default function libraryPage() {
   ulRef.addEventListener('click', event => {
     if (event.target.nodeName === 'IMG') {
       const id = event.target.getAttribute('data-id');
-
+      refs.bodyRef.insertAdjacentHTML(
+        'beforeend',
+        `<div class="backdrop is-hidden"></div>`,
+      );
       openModal(id);
     }
   });
-}
-//обработка локал
-function getLSQueue() {
-  const filmsQueue = JSON.parse(localStorage.getItem('queue'));
-  console.log(filmsQueue);
-  return filmsQueue;
-}
 
-function getLSWatched() {
-  const filmsWatched = JSON.parse(localStorage.getItem('watched'));
-  console.log(filmsWatched);
-  return filmsWatched;
+  function toDrowWatched() {
+    ulRef.innerHTML = '';
+    queuePageBtnRef.classList.remove('current');
+    watchedPageBtnRef.classList.add('current');
+    const watch = JSON.parse(localStorage.getItem('watched'));
+    console.log(watch);
+
+    ulRef.insertAdjacentHTML('beforeend', libFilms(watch));
+  }
+  function toDrowQueue() {
+    ulRef.innerHTML = '';
+
+    queuePageBtnRef.classList.add('current');
+    watchedPageBtnRef.classList.remove('current');
+
+    const queue = JSON.parse(localStorage.getItem('queue'));
+    ulRef.insertAdjacentHTML('beforeend', libFilms(queue));
+  }
 }

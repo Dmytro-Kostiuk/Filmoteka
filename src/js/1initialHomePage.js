@@ -18,10 +18,6 @@ export default function renderHomePage() {
 
   refs.bodyRef.insertAdjacentHTML('beforeend', homePageHtml);
   refs.bodyRef.insertAdjacentHTML('beforeend', footer);
-  refs.bodyRef.insertAdjacentHTML(
-    'beforeend',
-    `<div class="backdrop is-hidden"></div>`,
-  );
 
   const ulRef = document.querySelector('.films-list');
   const formRef = document.querySelector('.form');
@@ -38,7 +34,10 @@ export default function renderHomePage() {
   ulRef.addEventListener('click', event => {
     if (event.target.nodeName === 'IMG') {
       const id = event.target.getAttribute('data-id');
-
+      refs.bodyRef.insertAdjacentHTML(
+        'beforeend',
+        `<div class="backdrop is-hidden "></div>`,
+      );
       openModal(id);
     }
   });
