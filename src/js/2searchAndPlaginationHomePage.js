@@ -108,19 +108,25 @@ export default class ApiService {
 
   insertSearhGenres() {
     return this.fetchFilms().then(data => {
-      return this.fetchGenres().then(genres => {
-        return data.map(film => ({
-          ...film,
-          release_date: film.release_date.split('-')[0],
-          genres: film.genre_ids
-            .map(id =>
-              genres
-                .filter(elem => elem.id === id)
-                .map(id => (id.name = ' ' + id.name)),
-            )
-            .flat(),
-        }));
-      });
+      console.log(data);
+      return this.fetchGenres()
+        .then(genres => {
+          return data.map(film => ({
+            ...film,
+            release_date: film.release_date.split('-')[0],
+            genres: film.genre_ids
+              .map(id =>
+                genres
+                  .filter(elem => elem.id === id)
+                  .map(id => (id.name = ' ' + id.name)),
+              )
+              .flat(),
+          }));
+        })
+        .catch(err => {
+          const er = 0;
+          return er;
+        });
     });
   }
 

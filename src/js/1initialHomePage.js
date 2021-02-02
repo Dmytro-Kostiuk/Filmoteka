@@ -12,7 +12,6 @@ import loader from './spinner';
 import * as auth from './auth';
 import { getPerPage } from './variables';
 
-
 const apiService = new ApiService();
 
 export default function renderHomePage() {
@@ -96,32 +95,37 @@ export default function renderHomePage() {
       loader.spinner.close();
       apiService.resetPage();
       apiService.fetchFilmsCount().then(totalResults => {
-        apiService.fetchFilms().then(data => {
-          if (data.length !== 0) {
-            loader.spinner.show();
-            ulRef.innerHTML = '';
-            ulRef.insertAdjacentHTML('beforeend', renderPopularFilms(data));
-            addPaginator({
-              elementRef: document.querySelector('#paginator-placeholder'),
-              totalResults: totalResults,
-              perPage: getPerPage(),
-              loadPage: function (page) {
-                apiService.page = page;
-                apiService.fetchFilms().then(results => {
-                  ulRef.innerHTML = '';
-                  ulRef.insertAdjacentHTML(
-                    'beforeend',
-                    renderPopularFilms(results),
-                  );
-                  scrollToFirstFilm();
-                });
-              },
-            });
-          } else {
-            loader.spinner.close();
-            errorMessage.classList.remove('hidden');
-          }
-        });
+        if (totalResults > 0) {
+          apiService.insertSearhGenres().then(data => {
+            if (data !== 0) {
+              loader.spinner.show();
+              ulRef.innerHTML = '';
+              ulRef.insertAdjacentHTML('beforeend', renderPopularFilms(data));
+              addPaginator({
+                elementRef: document.querySelector('#paginator-placeholder'),
+                totalResults: totalResults,
+                perPage: getPerPage(),
+                loadPage: function (page) {
+                  apiService.page = page;
+                  apiService.insertSearhGenres().then(results => {
+                    ulRef.innerHTML = '';
+                    ulRef.insertAdjacentHTML(
+                      'beforeend',
+                      renderPopularFilms(results),
+                    );
+                    scrollToFirstFilm();
+                  });
+                },
+              });
+            } else {
+              loader.spinner.close();
+              errorMessage.classList.remove('hidden');
+            }
+          });
+        } else {
+          loader.spinner.close();
+          errorMessage.classList.remove('hidden');
+        }
       });
     }
   }
