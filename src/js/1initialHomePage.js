@@ -8,12 +8,15 @@ import openModal from './4filmDetailsPage';
 import libraryPage from './5libraryPage';
 import { data } from 'autoprefixer';
 import { addPaginator } from './paginator';
+import * as auth from './auth';
 import { getPerPage } from './variables';
+
 
 const apiService = new ApiService();
 
 export default function renderHomePage() {
   const refs = getRefs();
+
   refs.bodyRef.innerHTML = '';
   apiService.resetPage();
 
@@ -112,4 +115,5 @@ export default function renderHomePage() {
       });
     }
   }
+  auth.init();
 }
