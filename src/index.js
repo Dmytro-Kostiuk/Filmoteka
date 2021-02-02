@@ -6,7 +6,11 @@ import { data } from 'autoprefixer';
 import detailPage from './templates/detailPage.hbs';
 import renderHomePage from './js/1initialHomePage';
 
+import * as auth from './js/auth';
+
 const bodyRef = document.querySelector('body');
 const apiService = new ApiService();
 
 renderHomePage();
+
+auth.init();

@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+
 import * as authModal from './authModal';
 import * as loginModal from './loginModal';
 
@@ -86,4 +87,18 @@ export function init() {
       loggedOutLinks.forEach(link => (link.style.display = 'block'));
     }
   }
+
+  firebase.initializeApp(firebaseConfig);
+
+  const bodyRef = document.querySelector('body');
+  console.log(bodyRef);
+
+  const mainRef = document.querySelector('main');
+  console.log(mainRef);
+
+  const loginRef = document.querySelector('.js-login');
+  console.log(loginRef);
+
+  const signupRef = document.getElementById('js');
+  console.dir(signupRef);
 }
