@@ -6,6 +6,7 @@ import ApiService from './2searchAndPlaginationHomePage';
 import libFilms from '../templates/libraryFilms.hbs';
 import openModal from './4filmDetailsPage';
 import renderHomePage from './1initialHomePage';
+import loader from './spinner';
 
 const apiService = new ApiService();
 
@@ -38,12 +39,16 @@ export default function libraryPage() {
 }
 //обработка локал
 function getLSQueue() {
+  loader.spinner.show();
   const filmsQueue = JSON.parse(localStorage.getItem('queue'));
   console.log(filmsQueue);
+  loader.spinner.close();
 }
 
 function getLSWatched() {
+  loader.spinner.show();
   const filmsWatched = JSON.parse(localStorage.getItem('watched'));
   console.log(filmsWatched);
+  loader.spinner.close();
   return filmsWatched;
 }

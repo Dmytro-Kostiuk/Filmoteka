@@ -8,6 +8,7 @@ import openModal from './4filmDetailsPage';
 import libraryPage from './5libraryPage';
 import { data } from 'autoprefixer';
 import { addPaginator } from './paginator';
+import loader from './spinner';
 
 const apiService = new ApiService();
 
@@ -31,12 +32,15 @@ export default function renderHomePage() {
 
   formRef.addEventListener('submit', searchFilms);
   libraryLink.addEventListener('click', event => {
+    loader.spinner.show();
     event.preventDefault();
     libraryPage();
   });
 
   ulRef.addEventListener('click', event => {
+    loader.spinner.show();
     if (event.target.nodeName === 'IMG') {
+      loader.spinner.close();
       const id = event.target.getAttribute('data-id');
 
       openModal(id);
@@ -46,7 +50,9 @@ export default function renderHomePage() {
   logoLink.addEventListener('click', renderHomePage);
 
   apiService.fetchPopularFilmsCount().then(totalResults => {
+    loader.spinner.show();
     apiService.insertGenres().then(results => {
+      loader.spinner.close();
       ulRef.insertAdjacentHTML('beforeend', renderPopularFilms(results));
 
       addPaginator({
@@ -54,8 +60,10 @@ export default function renderHomePage() {
         totalResults: totalResults,
         perPage: apiService.getPerPage(),
         loadPage: function (page) {
+          loader.spinner.show();
           apiService.page = page;
           apiService.insertGenres().then(results => {
+            loader.spinner.close();
             ulRef.innerHTML = '';
             ulRef.insertAdjacentHTML('beforeend', renderPopularFilms(results));
           });
@@ -66,15 +74,16 @@ export default function renderHomePage() {
 
   function searchFilms(event) {
     event.preventDefault();
-
     errorMessage.classList.add('hidden');
     apiService.query = event.currentTarget.elements.query.value;
 
     if (apiService.query.trim() !== '') {
+      loader.spinner.close();
       apiService.resetPage();
       apiService.fetchFilmsCount().then(totalResults => {
         apiService.fetchFilms().then(data => {
           if (data.length !== 0) {
+            loader.spinner.show();
             ulRef.innerHTML = '';
             ulRef.insertAdjacentHTML('beforeend', renderPopularFilms(data));
             addPaginator({
@@ -93,6 +102,7 @@ export default function renderHomePage() {
               },
             });
           } else {
+            loader.spinner.close();
             errorMessage.classList.remove('hidden');
           }
         });
