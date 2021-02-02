@@ -59,11 +59,23 @@ export default function renderHomePage() {
           apiService.insertGenres().then(results => {
             ulRef.innerHTML = '';
             ulRef.insertAdjacentHTML('beforeend', renderPopularFilms(results));
+
+            scrollToFirstFilm();
           });
         },
       });
     });
   });
+
+  function scrollToFirstFilm() {
+    const el = document.querySelectorAll('.film-item')[0];
+
+    setTimeout(function () {
+      el.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }, 50);
+  }
 
   function searchFilms(event) {
     event.preventDefault();
@@ -90,6 +102,7 @@ export default function renderHomePage() {
                     'beforeend',
                     renderPopularFilms(results),
                   );
+                  scrollToFirstFilm();
                 });
               },
             });
