@@ -28,8 +28,8 @@ export function init() {
   const loginformRef = document.querySelector('.js-login-form');
   const backdropRef = document.querySelector('.js-backdrop');
   const logoutRef = document.querySelector('.js-logout');
-  const loggedInLinks = document.querySelectorAll('.logged-in');
-  const loggedOutLinks = document.querySelectorAll('.logged-out');
+  const loggedInLinks = document.querySelector('.js-logged-in');
+  const loggedOutLinks = document.querySelector('.js-logged-out');
 
   auth.onAuthStateChanged(user => {
     if (user) {
@@ -55,7 +55,17 @@ export function init() {
         loginformRef.reset();
         backdropRef.classList.add('hidden');
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        if (err.code === 'auth/user-not-found') {
+          alert('Invalid email entered!');
+          return;
+        }
+
+        if (err.code === 'auth/wrong-password') {
+          alert('The password is invalid!');
+          return;
+        }
+      });
   }
 
   function loginUser(e) {
@@ -70,7 +80,21 @@ export function init() {
         authformRef.reset();
         backdropRef.classList.add('hidden');
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        if (err.code === 'auth/invalid-email') {
+          alert('Please, enter correct email!');
+          return;
+        }
+
+        if (err.code === 'auth/weak-password') {
+          alert('Password must be at least 6 characters long!');
+          return;
+        }
+
+        if (err.code === 'auth/email-already-in-use') {
+          alert('This email already in use!');
+        }
+      });
   }
 
   function logoutUser(e) {
@@ -80,13 +104,11 @@ export function init() {
 
   function setupUI(user) {
     if (user) {
-      loggedInLinks.forEach(link => (link.style.display = 'block'));
-      loggedOutLinks.forEach(link => (link.style.display = 'none'));
+      loggedInLinks.classList.remove('nav-hidden');
+      loggedOutLinks.classList.add('nav-hidden');
     } else {
-      loggedInLinks.forEach(link => (link.style.display = 'none'));
-      loggedOutLinks.forEach(link => (link.style.display = 'block'));
+      loggedInLinks.classList.add('nav-hidden');
+      loggedOutLinks.classList.remove('nav-hidden');
     }
   }
-
-
 }

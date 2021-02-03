@@ -23,6 +23,9 @@
   overflow: auto;
   max-height: 100%;
   min-width: 70%;
+  border-radius: 25px;
+
+  border: 1px, solid $focus-color;
 
   text-align: center;
   @media screen and (min-width: $tablet) {
