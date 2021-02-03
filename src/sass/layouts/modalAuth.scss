@@ -67,7 +67,6 @@
   &:hover,
   &:focus {
     background-color: $focus-color;
-    border: none;
     transition: cubic-bezier(1, 0, 0, 0) 0.2s;
   }
 }
