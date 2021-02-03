@@ -1,4 +1,4 @@
-const signupForm = `<label>
+const signupForm = `<p class="text-logo form-logo">Filmoteka</p><label>
               <input
                 type="email"
                 name="email"

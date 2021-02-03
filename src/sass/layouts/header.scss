@@ -56,7 +56,7 @@
 .main-navigation {
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
+
   margin-bottom: 40px;
 }
 
@@ -77,6 +77,16 @@
   display: flex;
 }
 
+.site-nav {
+  margin-left: auto;
+  align-items: flex-end;
+}
+
+.nav-hidden {
+  display: none;
+  width: 0;
+}
+
 .nav-list {
   &:not(:last-child) {
     margin-right: 40px;
@@ -84,7 +94,8 @@
 }
 
 .nav-link {
-  line-height: 1.16;
+  font-size: 12px;
+  line-height: 1.167;
   color: $white-color;
 }
 
@@ -115,6 +126,10 @@
     margin-left: auto;
     margin-right: auto;
   }
+}
+.form-logo {
+  color: rgba(0, 0, 0, 0.56);
+  margin-top: 0;
 }
 
 .form-input {

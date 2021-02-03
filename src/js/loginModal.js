@@ -1,4 +1,4 @@
-const loginForm = `<label>
+const loginForm = `<p class="text-logo form-logo">Filmoteka</p><label>
               <input
                 type="email"
                 name="login-email"
@@ -25,7 +25,6 @@ export function init() {
   const loginRef = document.querySelector('.js-login');
   const backdropRef = document.querySelector('.js-backdrop');
   const loginFormRef = document.querySelector('.js-login-form');
-  console.log(backdropRef);
 
   loginRef.addEventListener('click', onOpenLoginModal);
   backdropRef.addEventListener('click', onBackDropClick);
