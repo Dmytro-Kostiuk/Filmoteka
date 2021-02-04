@@ -56,6 +56,11 @@ export default function openModal(id) {
     const infoBoxRef = document.querySelector('.info');
     watchBtnRef.addEventListener('click', addToWatched);
     queueBtnRef.addEventListener('click', addToQueue);
+    setTimeout(() => {
+      refs.modalContent.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }, 50);
     //  ------------------------------------------------------------
     function addToWatched() {
       const watchedValue = localStorage.getItem('watched');
