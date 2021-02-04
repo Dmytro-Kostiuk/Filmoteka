@@ -11,6 +11,7 @@ import loader from './spinner';
 const apiService = new ApiService();
 
 export default function libraryPage() {
+  localStorage.setItem('page', 'library');
   const refs = getRef();
   refs.bodyRef.innerHTML = '';
   refs.bodyRef.insertAdjacentHTML('beforeend', libraryPageHtml);
@@ -45,7 +46,8 @@ export default function libraryPage() {
     }
   });
 
-  function toDrowWatched() {
+   function toDrowWatched() {
+    localStorage.setItem('library', 'watchedPage');
     ulRef.innerHTML = '';
     queuePageBtnRef.classList.remove('current');
     watchedPageBtnRef.classList.add('current');
@@ -60,7 +62,9 @@ export default function libraryPage() {
       ulRef.insertAdjacentHTML('beforeend', libFilms(watch));
     }
   }
+
   function toDrowQueue() {
+    localStorage.setItem('library', 'queuePage');
     ulRef.innerHTML = '';
 
     queuePageBtnRef.classList.add('current');
@@ -78,3 +82,18 @@ export default function libraryPage() {
     }
   }
 }
+
+if(localStorage.getItem("library") === "queuePage"){
+  libraryPage.toDrowQueue;
+}
+else if(localStorage.getItem("library") === "watchedPage"){
+  libraryPage.toDrowWatched;
+}
+
+
+
+
+
+
+
+
