@@ -14,6 +14,7 @@ export default function openModal(id) {
   modal.innerHTML = '';
   modal.insertAdjacentHTML('beforeend', detailPage);
   const refs = {
+    btnQu: document.querySelector('.film-name'),
     modalContent: document.querySelector('[data-modal]'),
     homelink: document.querySelector('[data-home]'),
     liblink: document.querySelector('[data-lib]'),
@@ -39,10 +40,12 @@ export default function openModal(id) {
     if (queueValue && queueValue.includes(JSON.stringify(libInfo))) {
       queueBtnRef.innerText = 'DELETE FROM QUEUE';
       watchBtnRef.innerText = 'ADD TO WATHCED';
+      queueBtnRef.classList.add('current');
       // аналог с локал для просмтренных фильмов
     } else if (watchedValue && watchedValue.includes(JSON.stringify(libInfo))) {
       watchBtnRef.innerText = 'DELETE FROM WATHCED';
       queueBtnRef.innerText = 'ADD TO QUEUE';
+      watchBtnRef.classList.add('current');
     }
   }
 
@@ -57,7 +60,19 @@ export default function openModal(id) {
     watchBtnRef.addEventListener('click', addToWatched);
     queueBtnRef.addEventListener('click', addToQueue);
     //  ------------------------------------------------------------
-    function addToWatched() {
+    function changingColor(elem) {
+      elem.classList.remove('current');
+      if (
+        elem.innerText === 'DELETE FROM QUEUE' ||
+        elem.innerText === 'DELETE FROM WATHCED'
+      ) {
+        watchBtnRef.classList.add('current');
+        return;
+      }
+      queueBtnRef.classList.remove('current');
+    }
+
+    function addToWatched(e) {
       const watchedValue = localStorage.getItem('watched');
       const queueValue = localStorage.getItem('queue');
       const libInfo = {};
@@ -76,6 +91,7 @@ export default function openModal(id) {
         localStorage.setItem('queue', JSON.stringify(arr));
         queueBtnRef.innerText = 'ADD TO QUEUE';
         lsQueue = JSON.parse(localStorage.getItem('queue'));
+        queueBtnRef.classList.remove('current');
       } else if (
         watchedValue &&
         watchedValue.includes(JSON.stringify(libInfo))
@@ -86,14 +102,16 @@ export default function openModal(id) {
         localStorage.setItem('watched', JSON.stringify(arr));
         watchBtnRef.innerText = 'ADD TO WATHCED';
         lsWatched = JSON.parse(localStorage.getItem('watched'));
+        watchBtnRef.classList.remove('current');
         return;
       }
       lsWatched.push(libInfo);
       localStorage.setItem('watched', JSON.stringify(lsWatched));
       watchBtnRef.innerText = 'DELETE FROM WATHCED';
+      watchBtnRef.classList.add('current');
     }
     // --------------------------------------------------------------------
-    function addToQueue() {
+    function addToQueue(e) {
       const libInfo = {};
       const queueValue = localStorage.getItem('queue');
       const watchedValue = localStorage.getItem('watched');
@@ -111,6 +129,7 @@ export default function openModal(id) {
         localStorage.setItem('watched', JSON.stringify(arr));
         watchBtnRef.innerText = 'ADD TO WATHCED';
         lsWatched = JSON.parse(localStorage.getItem('watched'));
+        watchBtnRef.classList.remove('current');
       }
       //Если значение очереди не пустое и содержит объект удаляем обьект
       else if (queueValue && queueValue.includes(JSON.stringify(libInfo))) {
@@ -120,15 +139,16 @@ export default function openModal(id) {
         localStorage.setItem('queue', JSON.stringify(arr));
         queueBtnRef.innerText = 'ADD TO QUEUE';
         lsQueue = JSON.parse(localStorage.getItem('queue'));
+        queueBtnRef.classList.remove('current');
         return;
       }
       lsQueue.push(libInfo);
       localStorage.setItem('queue', JSON.stringify(lsQueue));
       queueBtnRef.innerText = 'DELETE FROM QUEUE';
+      queueBtnRef.classList.add('current');
     }
     window.addEventListener('keydown', Esc);
   });
-
   refs.logolink.addEventListener('click', renderHomePage);
   refs.homelink.addEventListener('click', renderHomePage);
   refs.liblink.addEventListener('click', libraryPage);
