@@ -124,8 +124,8 @@ export default class ApiService {
           }));
         })
         .catch(err => {
-          const er = 0;
-          return er;
+          // const er = 0;
+          return data;
         });
     });
   }
