@@ -34,6 +34,7 @@ export default function renderHomePage() {
     loader.spinner.show();
     event.preventDefault();
     libraryPage();
+    loader.spinner.close();
   });
 
   ulRef.addEventListener('click', event => {
@@ -106,8 +107,10 @@ export default function renderHomePage() {
                 totalResults: totalResults,
                 perPage: getPerPage(),
                 loadPage: function (page) {
+                  loader.spinner.show();
                   apiService.page = page;
                   apiService.insertSearhGenres().then(results => {
+                    loader.spinner.close();
                     ulRef.innerHTML = '';
                     ulRef.insertAdjacentHTML(
                       'beforeend',
