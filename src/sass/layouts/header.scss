@@ -9,46 +9,91 @@
   padding-bottom: 40px;
   background: rgba(0, 0, 0, 0.56);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background-image: url(../images/header/home/mobile-img.jpg);
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url(../images/header/home/mobile-img.jpg);
   background-size: cover;
 
   @media screen and (min-width: $tablet) {
-    background-image: url(../images/header/home/tablet-img.jpg);
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/header/home/tablet-img.jpg);
     padding-bottom: 60px;
   }
 
   @media screen and (min-width: $desktop) {
-    background-image: url(../images/header/home/desktop-img.jpg);
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/header/home/desktop-img.jpg);
   }
 }
 
 .library-header {
   padding-bottom: 70px;
-  background-image: url(../images/header/library/mobile-img.jpg);
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url(../images/header/library/mobile-img.jpg);
   background-position: bottom;
 
   @media screen and (min-width: $tablet) {
-    background-image: url(../images/header/library/tablet-img.jpg);
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/header/library/tablet-img.jpg);
     padding-bottom: 65px;
   }
 
   @media screen and (min-width: $desktop) {
-    background-image: url(../images/header/library/desktop-img.jpg);
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/header/library/desktop-img.jpg);
     background-size: cover;
   }
 }
 
 .modal-header {
-  background-image: url(../images/header/modal/mobile-img.jpg);
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url(../images/header/modal/mobile-img.jpg);
   padding-bottom: 160px;
   background-position: right top;
 
   @media screen and (min-width: $tablet) {
-    background-image: url(../images/header/library/tablet-img.jpg);
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/header/library/tablet-img.jpg);
   }
 
   @media screen and (min-width: $desktop) {
-    background-image: url(../images/header/modal/desktop-img.jpg);
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.56),
+        rgba(0, 0, 0, 0.56)
+      ),
+      url(../images/header/modal/desktop-img.jpg);
     padding-bottom: 160px;
   }
 }
