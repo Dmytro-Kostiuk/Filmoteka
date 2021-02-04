@@ -35,7 +35,9 @@ export default function libraryPage() {
   queuePageBtnRef.addEventListener('click', toDrowQueue);
 
   ulRef.addEventListener('click', event => {
+    loader.spinner.show();
     if (event.target.nodeName === 'IMG') {
+      loader.spinner.close();
       const id = event.target.getAttribute('data-id');
       refs.bodyRef.insertAdjacentHTML(
         'beforeend',
@@ -46,21 +48,25 @@ export default function libraryPage() {
   });
 
   function toDrowWatched() {
+    loader.spinner.show();
     ulRef.innerHTML = '';
     queuePageBtnRef.classList.remove('current');
     watchedPageBtnRef.classList.add('current');
     const watch = JSON.parse(localStorage.getItem('watched'));
     console.log(watch);
     if (watch === null) {
+      loader.spinner.close();
       ulRef.insertAdjacentHTML(
         'beforeend',
         `<li><div class="notification"><h2>You do not have to watched movies. Add them.</h2></div></li>`,
       );
     } else {
+      loader.spinner.close();
       ulRef.insertAdjacentHTML('beforeend', libFilms(watch));
     }
   }
   function toDrowQueue() {
+    loader.spinner.show();
     ulRef.innerHTML = '';
 
     queuePageBtnRef.classList.add('current');
@@ -69,11 +75,13 @@ export default function libraryPage() {
     const queue = JSON.parse(localStorage.getItem('queue'));
     console.log(queue);
     if (queue === null) {
+      loader.spinner.close();
       ulRef.insertAdjacentHTML(
         'beforeend',
         `<li><div class="notification"><h2>You do not have to queue movies to watch. Add them.</h2></div></li>`,
       );
     } else {
+      loader.spinner.close();
       ulRef.insertAdjacentHTML('beforeend', libFilms(queue));
     }
   }
