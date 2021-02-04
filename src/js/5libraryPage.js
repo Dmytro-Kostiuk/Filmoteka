@@ -27,7 +27,12 @@ export default function libraryPage() {
   const watchedPageBtnRef = document.querySelector('.watchedPageBtn');
   const queuePageBtnRef = document.querySelector('.queuePageBtn');
   // ulRef.insertAdjacentHTML('beforeend', libFilms(watch));
-  toDrowWatched();
+  // toDrowWatched();
+  if (localStorage.getItem('library') === 'queuePage') {
+    toDrowQueue();
+  } else {
+    toDrowWatched();
+  }
   homelink.addEventListener('click', renderHomePage);
   logolink.addEventListener('click', renderHomePage);
 
@@ -48,7 +53,7 @@ export default function libraryPage() {
     }
   });
 
-   function toDrowWatched() {
+  function toDrowWatched() {
     localStorage.setItem('library', 'watchedPage');
 
     loader.spinner.show();
@@ -71,7 +76,6 @@ export default function libraryPage() {
   }
 
   function toDrowQueue() {
-
     localStorage.setItem('library', 'queuePage');
 
     loader.spinner.show();
@@ -96,17 +100,8 @@ export default function libraryPage() {
   }
 }
 
-if(localStorage.getItem("library") === "queuePage"){
-  libraryPage.toDrowQueue;
-}
-else if(localStorage.getItem("library") === "watchedPage"){
-  libraryPage.toDrowWatched;
-}
-
-
-
-
-
-
-
-
+// if (localStorage.getItem('library') === 'queuePage') {
+//   libraryPage.toDrowQueue;
+// } else if (localStorage.getItem('library') === 'watchedPage') {
+//   libraryPage.toDrowWatched;
+// }
