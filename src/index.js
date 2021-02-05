@@ -7,15 +7,8 @@ import detailPage from './templates/detailPage.hbs';
 import renderHomePage from './js/1initialHomePage';
 import libraryPage from './js/5libraryPage';
 
-
-
-const bodyRef = document.querySelector('body');
-const apiService = new ApiService();
-
-if(localStorage.getItem("page") === "library"){
-    libraryPage();
+if (localStorage.getItem('page') === 'library') {
+  libraryPage();
+} else {
+  renderHomePage();
 }
-else{
-    renderHomePage();
-}
-
