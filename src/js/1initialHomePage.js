@@ -15,7 +15,7 @@ import { getPerPage } from './variables';
 const apiService = new ApiService();
 
 export default function renderHomePage() {
-   localStorage.setItem('page', 'home');
+  localStorage.setItem('page', 'home');
 
   const refs = getRefs();
 
@@ -107,7 +107,6 @@ export default function renderHomePage() {
 
   function scrollToFirstFilm() {
     const el = document.querySelectorAll('.film-item')[0];
-    console.log(el);
     if (el == undefined) {
       window.scrollTo({
         top: 0,

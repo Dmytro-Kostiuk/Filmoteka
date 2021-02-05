@@ -1,8 +1,7 @@
 'use strict';
 
-import { adoptPPFetch } from './plagins';
+import { adoptPPFetch } from './plugins';
 import { screenSize, getPerPage } from './variables';
-import jQuery from 'jquery';
 
 const KEY = 'da596067165f304bd61b992449ff5b38';
 const BASE = 'https://api.themoviedb.org/3';
@@ -27,12 +26,7 @@ export default class ApiService {
       perPage: getPerPage(),
       doFetch: page => {
         const url = `${BASE}/trending/movie/day?&page=${page}&api_key=${KEY}`;
-        return fetch(url)
-          .then(response => response.json())
-          .then(data => {
-            // this.page += 1;
-            return data.results;
-          });
+        return fetch(url).then(response => response.json());
       },
     });
   }
@@ -53,11 +47,7 @@ export default class ApiService {
       doFetch: page => {
         const url = `${BASE}/search/movie?&page=${page}&api_key=${KEY}&query=${this.searchQ}`;
 
-        return fetch(url)
-          .then(response => response.json())
-          .then(data => {
-            return data.results;
-          });
+        return fetch(url).then(response => response.json());
       },
     });
   }
