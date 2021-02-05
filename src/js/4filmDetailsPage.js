@@ -54,9 +54,13 @@ export default function openModal(id) {
     modal.classList.remove('is-hidden');
     refs.modalContent.insertAdjacentHTML('beforeend', detailPageTemplate(data));
     monitorButtonStatusText();
-   refs.watchBtnRef.addEventListener('click', addToWatched);
+    refs.watchBtnRef.addEventListener('click', addToWatched);
     refs.queueBtnRef.addEventListener('click', addToQueue);
-
+    setTimeout(() => {
+      refs.modalContent.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }, 50);
 
     //  ------------------------------------------------------------
 
