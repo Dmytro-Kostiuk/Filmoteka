@@ -2,6 +2,7 @@
 
 import { adoptPPFetch } from './plugins';
 import { screenSize, getPerPage } from './variables';
+import img from '../images/img-error.png';
 
 const KEY = 'da596067165f304bd61b992449ff5b38';
 const BASE = 'https://api.themoviedb.org/3';
@@ -118,6 +119,43 @@ export default class ApiService {
           return data;
         });
     });
+  }
+
+  updateImgError(data) {
+    const baseUrl = `https://image.tmdb.org/t/p/w500`;
+    const imgError = `${img}`;
+    return data.map(elem => {
+      let baseUrlImg = elem.backdrop_path;
+      let bigUrlImg = elem.poster_path;
+      if (typeof elem.backdrop_path != 'string') {
+        elem.backdrop_path = `${imgError}`;
+        elem.poster_path = `${imgError}`;
+      } else {
+        elem.backdrop_path = `${baseUrl}${baseUrlImg}`;
+        elem.poster_path = `${baseUrl}${bigUrlImg}`;
+      }
+      return elem;
+    });
+  }
+
+  imgErrorDetailFilm(film) {
+    const baseUrl = 'https://image.tmdb.org/t/p/original';
+    const posterPath = film.poster_path;
+    const imgError = `${img}`;
+    if (typeof film.poster_path !== 'string') {
+      film.poster_path = imgError;
+    } else {
+      if (posterPath.includes(baseUrl)) {
+        film.poster_path = posterPath;
+        return film;
+      }
+      if (posterPath.includes(imgError)) {
+        film.poster_path = posterPath;
+        return film;
+      }
+      film.poster_path = `${baseUrl}${film.poster_path}`;
+    }
+    return film;
   }
 
   get query() {

@@ -51,6 +51,7 @@ export default function openModal(id) {
 
   apiService.id = id;
   apiService.fetchDetailFilmWithNameGerges().then(data => {
+    apiService.imgErrorDetailFilm(data);
     modal.classList.remove('is-hidden');
     refs.modalContent.insertAdjacentHTML('beforeend', detailPageTemplate(data));
     monitorButtonStatusText();

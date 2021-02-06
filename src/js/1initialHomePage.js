@@ -61,6 +61,7 @@ export default function renderHomePage() {
       apiService
         .insertGenres()
         .then(results => {
+          apiService.updateImgError(results);
           loader.spinner.close();
           ulRef.insertAdjacentHTML('beforeend', renderPopularFilms(results));
 
@@ -74,6 +75,7 @@ export default function renderHomePage() {
               apiService
                 .insertGenres()
                 .then(results => {
+                  apiService.updateImgError(results);
                   loader.spinner.close();
                   ulRef.innerHTML = '';
                   ulRef.insertAdjacentHTML(
@@ -132,6 +134,7 @@ export default function renderHomePage() {
       apiService.fetchFilmsCount().then(totalResults => {
         if (totalResults > 0) {
           apiService.insertSearhGenres().then(data => {
+            apiService.updateImgError(data);
             if (data !== 0) {
               loader.spinner.show();
               ulRef.innerHTML = '';
@@ -146,6 +149,7 @@ export default function renderHomePage() {
                   apiService
                     .insertSearhGenres()
                     .then(results => {
+                      apiService.updateImgError(results);
                       loader.spinner.close();
                       ulRef.innerHTML = '';
                       ulRef.insertAdjacentHTML(
