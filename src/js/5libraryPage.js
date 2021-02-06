@@ -44,15 +44,16 @@ export default function libraryPage() {
   queuePageBtnRef.addEventListener('click', toDrowQueue);
 
   ulRef.addEventListener('click', event => {
-    loader.spinner.show();
     if (event.target.nodeName === 'IMG') {
-      loader.spinner.close();
+      loader.spinner.show();
+
       const id = event.target.getAttribute('data-id');
       refs.bodyRef.insertAdjacentHTML(
         'beforeend',
         `<div class="backdrop is-hidden"></div>`,
       );
       openModal(id);
+      loader.spinner.close();
     }
   });
 
