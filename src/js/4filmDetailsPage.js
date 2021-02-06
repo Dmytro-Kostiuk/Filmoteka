@@ -56,11 +56,6 @@ export default function openModal(id) {
     monitorButtonStatusText();
     refs.watchBtnRef.addEventListener('click', addToWatched);
     refs.queueBtnRef.addEventListener('click', addToQueue);
-    setTimeout(() => {
-      refs.modalContent.scrollIntoView({
-        behavior: 'smooth',
-      });
-    }, 50);
 
     //  ------------------------------------------------------------
 
