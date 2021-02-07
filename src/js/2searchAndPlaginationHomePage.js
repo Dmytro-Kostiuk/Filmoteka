@@ -125,6 +125,7 @@ export default class ApiService {
   updateImgError(data) {
     const baseUrl = `https://image.tmdb.org/t/p/w500`;
     const imgError = `${img}`;
+
     return data.map(elem => {
       let baseUrlImg = elem.backdrop_path;
       let bigUrlImg = elem.poster_path;
@@ -136,13 +137,15 @@ export default class ApiService {
 
       if (typeof date === 'undefined') {
         elem.release_date = 'No release date';
-
       }
       if (typeof elem.backdrop_path != 'string') {
         elem.backdrop_path = `${imgError}`;
-        elem.poster_path = `${imgError}`;
       } else {
         elem.backdrop_path = `${baseUrl}${baseUrlImg}`;
+      }
+      if (typeof elem.poster_path != 'string') {
+        elem.poster_path = `${imgError}`;
+      } else {
         elem.poster_path = `${baseUrl}${bigUrlImg}`;
       }
       return elem;

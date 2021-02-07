@@ -97,15 +97,17 @@
 }
 
 .img {
-  min-width: 280px;
+  width: 280px;
+
   min-height: 416px;
   margin-bottom: 30px;
   @media screen and (min-width: $tablet) {
-    min-width: 294px;
+    width: 294px;
+
     margin-bottom: 0;
   }
   @media screen and (min-width: $desktop) {
-    min-width: 514px;
+    max-width: 514px;
     min-width: 426px;
   }
 }
