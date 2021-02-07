@@ -99,7 +99,6 @@ export default class ApiService {
 
   insertSearhGenres() {
     return this.fetchFilms().then(data => {
-      console.log(data);
       return this.fetchGenres()
         .then(genres => {
           return data.map(film => ({
@@ -127,6 +126,15 @@ export default class ApiService {
     return data.map(elem => {
       let baseUrlImg = elem.backdrop_path;
       let bigUrlImg = elem.poster_path;
+      let date = elem.release_date;
+      let genres = elem.genres;
+      if (genres.length == 0) {
+        elem.genres.push('No genres');
+      }
+      if (typeof date === 'undefined' || date === '') {
+        elem.release_date = 'No release date';
+        //elem.release_date = elem.release_date.slice(0, 4);
+      }
       if (typeof elem.backdrop_path != 'string') {
         elem.backdrop_path = `${imgError}`;
         elem.poster_path = `${imgError}`;
