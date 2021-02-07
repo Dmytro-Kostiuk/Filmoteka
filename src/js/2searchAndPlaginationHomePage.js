@@ -104,7 +104,9 @@ export default class ApiService {
         .then(genres => {
           return data.map(film => ({
             ...film,
-            release_date: film.release_date.split('-')[0],
+            release_date: film.release_date
+              ? film.release_date.split('-')[0]
+              : 'No release date',
             genres: film.genre_ids
               .map(id =>
                 genres
@@ -127,6 +129,14 @@ export default class ApiService {
     return data.map(elem => {
       let baseUrlImg = elem.backdrop_path;
       let bigUrlImg = elem.poster_path;
+      let date = elem.release_date;
+      let genres = elem.genres;
+      if (genres.length == 0) {
+        elem.genres.push('No genres');
+      }
+      if (typeof date === 'undefined') {
+        elem.release_date = 'No release date';
+      }
       if (typeof elem.backdrop_path != 'string') {
         elem.backdrop_path = `${imgError}`;
         elem.poster_path = `${imgError}`;
