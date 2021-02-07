@@ -38,14 +38,15 @@ export default function openModal(id) {
 
     let libInfo = new refs.detailInfo();
     if (queueValue && queueValue.includes(JSON.stringify(libInfo))) {
+      refs.queueBtnRef.classList.add('text-button');
       refs.queueBtnRef.innerText = 'DELETE FROM QUEUE';
       refs.watchBtnRef.innerText = 'ADD TO WATHCED';
-      refs.queueBtnRef.classList.add('current');
+
       // аналог с локал для просмтренных фильмов
     } else if (watchedValue && watchedValue.includes(JSON.stringify(libInfo))) {
+      refs.watchBtnRef.classList.add('text-button');
       refs.watchBtnRef.innerText = 'DELETE FROM WATHCED';
       refs.queueBtnRef.innerText = 'ADD TO QUEUE';
-      refs.watchBtnRef.classList.add('current');
     }
   }
 
@@ -71,7 +72,7 @@ export default function openModal(id) {
         localStorage.setItem('queue', JSON.stringify(arr));
         refs.queueBtnRef.innerText = 'ADD TO QUEUE';
         lsQueue = JSON.parse(localStorage.getItem('queue'));
-        refs.queueBtnRef.classList.remove('current');
+        refs.queueBtnRef.classList.remove('text-button');
       } else if (
         watchedValue &&
         watchedValue.includes(JSON.stringify(libInfo))
@@ -82,13 +83,13 @@ export default function openModal(id) {
         localStorage.setItem('watched', JSON.stringify(arr));
         refs.watchBtnRef.innerText = 'ADD TO WATHCED';
         lsWatched = JSON.parse(localStorage.getItem('watched'));
-        refs.watchBtnRef.classList.remove('current');
+        refs.watchBtnRef.classList.remove('text-button');
         return;
       }
       lsWatched.push(libInfo);
       localStorage.setItem('watched', JSON.stringify(lsWatched));
+      refs.watchBtnRef.classList.add('text-button');
       refs.watchBtnRef.innerText = 'DELETE FROM WATHCED';
-      refs.watchBtnRef.classList.add('current');
     }
     // --------------------------------------------------------------------
     function addToQueue() {
@@ -102,7 +103,7 @@ export default function openModal(id) {
         localStorage.setItem('watched', JSON.stringify(arr));
         refs.watchBtnRef.innerText = 'ADD TO WATHCED';
         lsWatched = JSON.parse(localStorage.getItem('watched'));
-        refs.watchBtnRef.classList.remove('current');
+        refs.watchBtnRef.classList.remove('text-button');
       } else if (queueValue && queueValue.includes(JSON.stringify(libInfo))) {
         let arr = [];
         arr = JSON.parse(localStorage.getItem('queue'));
@@ -110,13 +111,13 @@ export default function openModal(id) {
         localStorage.setItem('queue', JSON.stringify(arr));
         refs.queueBtnRef.innerText = 'ADD TO QUEUE';
         lsQueue = JSON.parse(localStorage.getItem('queue'));
-        refs.queueBtnRef.classList.remove('current');
+        refs.queueBtnRef.classList.remove('text-button');
         return;
       }
       lsQueue.push(libInfo);
       localStorage.setItem('queue', JSON.stringify(lsQueue));
+      refs.queueBtnRef.classList.add('text-button');
       refs.queueBtnRef.innerText = 'DELETE FROM QUEUE';
-      refs.queueBtnRef.classList.add('current');
     }
     window.addEventListener('keydown', Esc);
   });

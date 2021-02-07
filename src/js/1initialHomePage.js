@@ -55,58 +55,52 @@ export default function renderHomePage() {
 
   logoLink.addEventListener('click', renderHomePage);
 
-  apiService
-    .fetchPopularFilmsCount()
-    .then(totalResults => {
-      loader.spinner.show();
-      apiService
-        .insertGenres()
-        .then(results => {
-          apiService.updateImgError(results);
-          loader.spinner.close();
-          ulRef.insertAdjacentHTML('beforeend', renderPopularFilms(results));
+  apiService.fetchPopularFilmsCount().then(totalResults => {
+    loader.spinner.show();
+    apiService
+      .insertGenres()
+      .then(results => {
+        apiService.updateImgError(results);
+        loader.spinner.close();
+        ulRef.insertAdjacentHTML('beforeend', renderPopularFilms(results));
 
-          addPaginator({
-            elementRef: document.querySelector('#paginator-placeholder'),
-            totalResults: totalResults,
-            perPage: getPerPage(),
-            loadPage: function (page) {
-              loader.spinner.show();
-              apiService.page = page;
-              apiService
-                .insertGenres()
-                .then(results => {
-                  apiService.updateImgError(results);
-                  loader.spinner.close();
-                  ulRef.innerHTML = '';
-                  ulRef.insertAdjacentHTML(
-                    'beforeend',
-                    renderPopularFilms(results),
-                  );
+        addPaginator({
+          elementRef: document.querySelector('#paginator-placeholder'),
+          totalResults: totalResults,
+          perPage: getPerPage(),
+          loadPage: function (page) {
+            loader.spinner.show();
+            apiService.page = page;
+            apiService
+              .insertGenres()
+              .then(results => {
+                apiService.updateImgError(results);
+                loader.spinner.close();
+                ulRef.innerHTML = '';
+                ulRef.insertAdjacentHTML(
+                  'beforeend',
+                  renderPopularFilms(results),
+                );
 
-                  scrollToFirstFilm();
-                })
-                .catch(err => {
-                  loader.spinner.close();
-                  ulRef.innerHTML = '';
+                scrollToFirstFilm();
+              })
+              .catch(err => {
+                loader.spinner.close();
+                ulRef.innerHTML = '';
 
-                  scrollToFirstFilm();
-                  ulRef.insertAdjacentHTML(
-                    'beforeend',
-                    `<li><div class="notification"><h2>Everything that you have found according to your request, please visit the previous page</h2></div></li>`,
-                  );
-                });
-            },
-          });
-        })
-        .catch(err => {
-          console.log('error inside');
-          loader.spinner.close();
+                scrollToFirstFilm();
+                ulRef.insertAdjacentHTML(
+                  'beforeend',
+                  `<li><div class="notification"><h2>Everything that you have found according to your request, please visit the previous page</h2></div></li>`,
+                );
+              });
+          },
         });
-    })
-    .catch(err => {
-      console.log('error here');
-    });
+      })
+      .catch(err => {
+        loader.spinner.close();
+      });
+  });
 
   function scrollToFirstFilm() {
     const el = document.querySelectorAll('.film-item')[0];
@@ -135,7 +129,6 @@ export default function renderHomePage() {
       apiService.fetchFilmsCount().then(totalResults => {
         if (totalResults > 0) {
           apiService.insertSearhGenres().then(data => {
-            console.log(data);
             apiService.updateImgError(data);
             if (data !== 0) {
               loader.spinner.show();
@@ -151,8 +144,6 @@ export default function renderHomePage() {
                   apiService
                     .insertSearhGenres()
                     .then(results => {
-                      console.log(results);
-                      console.log(results);
                       apiService.updateImgError(results);
                       loader.spinner.close();
                       ulRef.innerHTML = '';
@@ -163,7 +154,6 @@ export default function renderHomePage() {
                       scrollToFirstFilm();
                     })
                     .catch(err => {
-                      console.log('error');
                       loader.spinner.close();
                       ulRef.innerHTML = '';
 
