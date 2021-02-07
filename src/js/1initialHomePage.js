@@ -135,6 +135,7 @@ export default function renderHomePage() {
       apiService.fetchFilmsCount().then(totalResults => {
         if (totalResults > 0) {
           apiService.insertSearhGenres().then(data => {
+            console.log(data);
             apiService.updateImgError(data);
             if (data !== 0) {
               loader.spinner.show();
@@ -150,6 +151,8 @@ export default function renderHomePage() {
                   apiService
                     .insertSearhGenres()
                     .then(results => {
+                      console.log(results);
+                      console.log(results);
                       apiService.updateImgError(results);
                       loader.spinner.close();
                       ulRef.innerHTML = '';
